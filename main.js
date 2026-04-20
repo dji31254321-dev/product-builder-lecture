@@ -22,6 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('theme', 'dark');
       updateThemeUI('dark');
     }
+    
+    // Disqus 테마 새로고침 (Disqus가 로드된 경우)
+    if (typeof DISQUS !== 'undefined') {
+      DISQUS.reset({
+        reload: true,
+        config: function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.location.pathname;
+        }
+      });
+    }
   });
 
   function updateThemeUI(theme) {
