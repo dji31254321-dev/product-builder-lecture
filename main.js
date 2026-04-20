@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const drawBtn = document.getElementById('draw-btn');
   const lottoContainer = document.getElementById('lotto-container');
 
-  // Theme Logic
+  // 테마 로직
   const currentTheme = localStorage.getItem('theme') || 'light';
   if (currentTheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
@@ -26,15 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateThemeUI(theme) {
     if (theme === 'dark') {
-      themeTitle.textContent = 'Dark Mode';
-      toggleBtn.textContent = 'Switch to Light Mode';
+      themeTitle.textContent = '다크 모드';
+      toggleBtn.textContent = '라이트 모드로 전환';
     } else {
-      themeTitle.textContent = 'Light Mode';
-      toggleBtn.textContent = 'Switch to Dark Mode';
+      themeTitle.textContent = '라이트 모드';
+      toggleBtn.textContent = '다크 모드로 전환';
     }
   }
 
-  // Lotto Logic
+  // 로또 로직
   drawBtn.addEventListener('click', () => {
     const numbers = generateLottoNumbers();
     displayNumbers(numbers);
