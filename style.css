@@ -3,9 +3,13 @@
   --card-bg: #ffffff;
   --text-color: #333333;
   --primary-color: #3498db;
+  --secondary-color: #2ecc71;
   --ball-bg: #e0e0e0;
   --ball-text: #2c3e50;
+  --input-bg: #ffffff;
+  --input-border: #cccccc;
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --divider: #dddddd;
 }
 
 [data-theme='dark'] {
@@ -13,20 +17,23 @@
   --card-bg: #2d2d2d;
   --text-color: #ecf0f1;
   --primary-color: #3498db;
+  --secondary-color: #2ecc71;
   --ball-bg: #444444;
   --ball-text: #ecf0f1;
+  --input-bg: #3d3d3d;
+  --input-border: #555555;
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --divider: #444444;
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Pretendard', 'Inter', sans-serif;
   transition: all 0.3s ease;
   margin: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 .theme-controls {
@@ -37,19 +44,27 @@ body {
   gap: 15px;
 }
 
-.lotto-wrapper {
-  flex: 1;
+.content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
 }
 
-h1 {
-  margin-bottom: 40px;
+.lotto-section, .contact-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+h1, h2 {
+  text-align: center;
+}
+
+/* 로또 스타일 */
 #lotto-container {
   background-color: var(--card-bg);
   padding: 40px;
@@ -60,29 +75,72 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   min-height: 100px;
-  width: 90%;
+  width: 100%;
   max-width: 600px;
   margin-bottom: 30px;
 }
 
 .ball {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background-color: var(--ball-bg);
   color: var(--ball-text);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
   font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   animation: popIn 0.3s ease-out;
 }
 
-.placeholder {
-  color: #999;
-  font-style: italic;
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--divider);
+  margin: 60px 0;
+}
+
+/* 제휴 문의 폼 스타일 */
+.contact-desc {
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.contact-form {
+  background-color: var(--card-bg);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 600px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.form-group input, .form-group textarea {
+  padding: 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
 }
 
 button {
@@ -91,22 +149,24 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: transform 0.1s;
-}
-
-button:active {
-  transform: scale(0.95);
+  transition: all 0.2s;
 }
 
 #theme-toggle {
   background-color: var(--card-bg);
   color: var(--text-color);
-  border: 1px solid var(--text-color);
+  border: 1px solid var(--input-border);
 }
 
 #draw-btn {
   background-color: var(--primary-color);
   color: white;
+}
+
+.submit-btn {
+  background-color: var(--secondary-color);
+  color: white;
+  width: 100%;
   font-size: 1.1rem;
 }
 
