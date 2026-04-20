@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.getElementById('theme-toggle');
   const themeTitle = document.getElementById('theme-title');
-  const currentTheme = localStorage.getItem('theme') || 'light';
+  const drawBtn = document.getElementById('draw-btn');
+  const lottoContainer = document.getElementById('lotto-container');
 
-  // Apply saved theme on load
+  // Theme Logic
+  const currentTheme = localStorage.getItem('theme') || 'light';
   if (currentTheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
-    updateUI('dark');
+    updateThemeUI('dark');
   }
 
   toggleBtn.addEventListener('click', () => {
@@ -14,15 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (theme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'light');
       localStorage.setItem('theme', 'light');
-      updateUI('light');
+      updateThemeUI('light');
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('theme', 'dark');
-      updateUI('dark');
+      updateThemeUI('dark');
     }
   });
 
-  function updateUI(theme) {
+  function updateThemeUI(theme) {
     if (theme === 'dark') {
       themeTitle.textContent = 'Dark Mode';
       toggleBtn.textContent = 'Switch to Light Mode';
@@ -30,5 +32,32 @@ document.addEventListener('DOMContentLoaded', () => {
       themeTitle.textContent = 'Light Mode';
       toggleBtn.textContent = 'Switch to Dark Mode';
     }
+  }
+
+  // Lotto Logic
+  drawBtn.addEventListener('click', () => {
+    const numbers = generateLottoNumbers();
+    displayNumbers(numbers);
+  });
+
+  function generateLottoNumbers() {
+    const set = new Set();
+    while (set.size < 6) {
+      const num = Math.floor(Math.random() * 45) + 1;
+      set.add(num);
+    }
+    return Array.from(set).sort((a, b) => a - b);
+  }
+
+  function displayNumbers(numbers) {
+    lottoContainer.innerHTML = '';
+    numbers.forEach((num, index) => {
+      setTimeout(() => {
+        const ball = document.createElement('div');
+        ball.className = 'ball';
+        ball.textContent = num;
+        lottoContainer.appendChild(ball);
+      }, index * 100);
+    });
   }
 });

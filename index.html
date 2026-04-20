@@ -1,63 +1,26 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>로또 번호 추천기</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            margin-top: 100px;
-        }
-        h1 {
-            color: #333;
-        }
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #result {
-            margin-top: 30px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lotto Generator - Theme Demo</title>
+  <link href='/style.css' rel='stylesheet'>
 </head>
 <body>
+  <div class="theme-controls">
+    <h2 id="theme-title">Light Mode</h2>
+    <button id="theme-toggle">Switch to Dark Mode</button>
+  </div>
 
-    <h1>🎯 로또 번호 추천기</h1>
-    <button onclick="generateLotto()">번호 뽑기</button>
+  <main class="lotto-wrapper">
+    <h1>Lotto Number Generator</h1>
+    <div id="lotto-container">
+      <!-- Balls will be injected here -->
+      <div class="placeholder">Press the button to draw!</div>
+    </div>
+    <button id="draw-btn">Draw Numbers</button>
+  </main>
 
-    <div id="result">버튼을 눌러주세요!</div>
-
-    <script>
-        function generateLotto() {
-            let numbers = [];
-
-            while (numbers.length < 6) {
-                let num = Math.floor(Math.random() * 45) + 1;
-
-                if (!numbers.includes(num)) {
-                    numbers.push(num);
-                }
-            }
-
-            numbers.sort(function(a, b) {
-                return a - b;
-            });
-
-            document.getElementById("result").innerText = numbers.join(" / ");
-        }
-    </script>
-
+  <script defer type="text/javascript" src="/main.js"></script>
 </body>
 </html>

@@ -1,36 +1,116 @@
 :root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --button-bg: #eeeeee;
-  --button-text: #000000;
+  --bg-color: #f0f2f5;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --primary-color: #3498db;
+  --ball-bg: #e0e0e0;
+  --ball-text: #2c3e50;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme='dark'] {
-  --bg-color: #121212;
-  --text-color: #ffffff;
-  --button-bg: #333333;
-  --button-text: #ffffff;
+  --bg-color: #1a1a1a;
+  --card-bg: #2d2d2d;
+  --text-color: #ecf0f1;
+  --primary-color: #3498db;
+  --ball-bg: #444444;
+  --ball-text: #ecf0f1;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.theme-controls {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+
+.lotto-wrapper {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 40px;
+}
+
+#lotto-container {
+  background-color: var(--card-bg);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 100px;
+  width: 90%;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.ball {
+  width: 60px;
+  height: 60px;
+  background-color: var(--ball-bg);
+  color: var(--ball-text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  animation: popIn 0.3s ease-out;
+}
+
+.placeholder {
+  color: #999;
+  font-style: italic;
 }
 
 button {
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: 1px solid var(--text-color);
-  padding: 10px 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
+  font-weight: 600;
+  transition: transform 0.1s;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+#theme-toggle {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+}
+
+#draw-btn {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1.1rem;
+}
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
